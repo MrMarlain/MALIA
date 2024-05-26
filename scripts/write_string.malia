@@ -1,11 +1,11 @@
-setappv 1 1    // 0/1  hide/show write commands
+setappv 1 0    // 0/1  hide/show write commands
 setappv 2 25  // write delay in mls 
 setappv 3 0    // 0/1  wait close
 setappv 4 0    // 0/1  show code 
 setappv 5 0    // 0/1  show path file
-setappv 6 1    // 0/1  show result memory
+setappv 6 0    // 0/1  show result memory
 setappv 7 1    // 0/1  show count steps
-setappv 8 1    // 0/1  hide/show commands details
+setappv 8 0    // 0/1  hide/show commands details
 
 alocate 80              // выделить 80 ячеек
 set 0 0                 // init = 0
