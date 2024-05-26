@@ -1,0 +1,11 @@
+setappv 6 1
+
+alocate 128
+
+select 0
+ifss 1 128
+gotoadd 4
+    setrds 100 999
+    selectm 1
+    gotoadd -4
+

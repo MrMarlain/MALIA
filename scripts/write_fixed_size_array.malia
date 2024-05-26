@@ -1,0 +1,58 @@
+setappv 0 0    # 0/1  close app
+setappv 1 0    # 0/1  hide/show write commands
+setappv 2 100  # write delay in mls 
+setappv 3 0    # 0/1  wait close
+setappv 4 0    # 0/1  show code 
+setappv 5 0    # 0/1  show path file
+setappv 6 0    # 0/1  show result memory
+setappv 7 1    # 0/1  show count steps
+setappv 8 0    # 0/1  hide/show commands details
+
+alocate 80              // create 80 cells
+
+set 0 0                 // init = 0
+
+// function writeArr(arr_start(1), arr_end(2))
+set 1 0                 // currect_address
+set 2 0                 // arr_end
+
+point 0
+select 0
+if 0 1                  // if init == 1
+gotoadd 10              
+    selectv 1               // SELECT.pos = currect_address.value
+    ifsv 5 2                // if SELECT.pos < arr_end.value
+    gotoadd 4
+        writes                  // show select
+        add 1 1                 // currect_address.value += 1
+        gotoadd -5
+    write 10                // write \n
+    gotoback                // return
+
+
+set 0 1                 // init = 1
+
+// "Hello world!\n\0" [50-63]
+setarr 50 14
+72
+101
+108
+108
+111
+32
+119
+111
+114
+108
+100
+33
+10
+0
+
+
+set 1 50
+set 2 63
+gotopoint 0 1           // call writeArr(50, 52)
+
+
+exit

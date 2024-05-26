@@ -1,0 +1,50 @@
+setappv 1 1    // 0/1  hide/show write commands
+setappv 2 25  // write delay in mls 
+setappv 3 0    // 0/1  wait close
+setappv 4 0    // 0/1  show code 
+setappv 5 0    // 0/1  show path file
+setappv 6 1    // 0/1  show result memory
+setappv 7 1    // 0/1  show count steps
+setappv 8 1    // 0/1  hide/show commands details
+
+alocate 80              // выделить 80 ячеек
+set 0 0                 // init = 0
+
+// function writeString(0)(string_start(1))
+set 1 0                 // i
+point 0
+select 0
+if 0 1                  // if init == 1
+gotoadd 8            
+    selectv 1
+    if 1 0
+    gotoadd 4
+        writes
+        selectm 1
+        gotoadd -4
+    gotoback
+
+
+set 0 1                 // init = 1
+
+// "Wello world!\n\0" [50-63]
+setarr 50 14
+72
+101
+108
+108
+111
+32
+119
+111
+114
+108
+100
+33
+10
+0
+
+set 1 50
+gotopoint 0 1           // call writeString(50)
+
+exit
