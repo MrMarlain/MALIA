@@ -1,6 +1,7 @@
 from time import sleep
 import sys
 from random import randint as rd
+from traceback import format_exc
 
 def getCode(file_path: str):
     if INT_SETTINGS[5]: print(f'{file_path=}\n')
@@ -201,33 +202,38 @@ def runCommand(line):
         case _:
             raise Exception(f'Команды "{command}" не существует!')
 
-INT_SETTINGS = {
-    0: 0,    # 0/1  close app
-    1: 0,    # 0/1  hide/show write commands
-    2: 100,  # write delay in mls 
-    3: 0,    # 0/1  wait close
-    4: 0,    # 0/1  show code 
-    5: 0,    # 0/1  show path file
-    6: 0,    # 0/1  show result memory
-    7: 0,    # 0/1  show count steps
-    8: 0,    # 0/1  hide/show commands details
-}
-INT_CODE = getCode("scripts/random_memory.malia")#sys.argv[1])
-INT_MEMORY = {0: []}
-if INT_SETTINGS[4]: print(f'INT_CODE:\n{"\n".join([f'{i+1})\t{isinstance(INT_CODE[i], str) if '' else INT_CODE[i]}' for i in range(len(INT_CODE))])}')   
-
-INT_STEP_COUNTER = 0
-INT_LINE_COUNTER = 0
-INT_CURRENT_VAR = None
-INT_POINTS = {}
-INT_POINT_PATH = []
-INT_AREA = 0
-if INT_SETTINGS[4]: print(f'\nPROGRAMM RUN\n')
-while INT_LINE_COUNTER < len(INT_CODE) and not INT_SETTINGS[0]:
-    runCommand(INT_CODE[INT_LINE_COUNTER]) 
-    INT_LINE_COUNTER += 1
-    INT_STEP_COUNTER += 1
-if INT_SETTINGS[4]: print(f'\nPROGRAMM STOP\n')
-if INT_SETTINGS[7]: print(f'steps: {INT_STEP_COUNTER}')
-if INT_SETTINGS[6]: print(f'{INT_MEMORY=}')
-if INT_SETTINGS[3]: input()
+try:
+    if len(sys.argv) <= 1:
+        input(f'Please, select file.malia and run interpreter:\npython int_MALIA.py your_file.malia')
+        exit()
+    INT_SETTINGS = {
+        0: 0,    # 0/1  close app
+        1: 0,    # 0/1  hide/show write commands
+        2: 100,  # write delay in mls 
+        3: 0,    # 0/1  wait close
+        4: 0,    # 0/1  show code 
+        5: 0,    # 0/1  show path file
+        6: 0,    # 0/1  show result memory
+        7: 0,    # 0/1  show count steps
+        8: 0,    # 0/1  hide/show commands details
+    }
+    INT_CODE = getCode(sys.argv[1])
+    INT_MEMORY = {0: []}
+    if INT_SETTINGS[4]: print(f'INT_CODE:\n{"\n".join([f'{i+1})\t{isinstance(INT_CODE[i], str) if '' else INT_CODE[i]}' for i in range(len(INT_CODE))])}')   
+    INT_STEP_COUNTER = 0
+    INT_LINE_COUNTER = 0
+    INT_CURRENT_VAR = None
+    INT_POINTS = {}
+    INT_POINT_PATH = []
+    INT_AREA = 0
+    if INT_SETTINGS[4]: print(f'\nPROGRAMM RUN\n')
+    while INT_LINE_COUNTER < len(INT_CODE) and not INT_SETTINGS[0]:
+        runCommand(INT_CODE[INT_LINE_COUNTER]) 
+        INT_LINE_COUNTER += 1
+        INT_STEP_COUNTER += 1
+    if INT_SETTINGS[4]: print(f'\nPROGRAMM STOP\n')
+    if INT_SETTINGS[7]: print(f'steps: {INT_STEP_COUNTER}')
+    if INT_SETTINGS[6]: print(f'{INT_MEMORY=}')
+    if INT_SETTINGS[3]: input()
+except:
+    input(format_exc())
