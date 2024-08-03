@@ -1,7 +1,7 @@
 setappv 0 0    # 0/1  close app
 setappv 1 0    # 0/1  hide/show write commands
 setappv 2 100  # write delay in mls 
-setappv 3 1    # 0/1  wait close
+setappv 3 0    # 0/1  wait close
 setappv 4 0    # 0/1  show code 
 setappv 5 0    # 0/1  show path file
 setappv 6 0    # 0/1  show result memory

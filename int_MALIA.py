@@ -211,7 +211,7 @@ try:
         1: 0,    # 0/1  hide/show write commands
         2: 100,  # write delay in mls 
         3: 0,    # 0/1  wait close
-        4: 0,    # 0/1  show code 
+        4: 1,    # 0/1  show code 
         5: 0,    # 0/1  show path file
         6: 0,    # 0/1  show result memory
         7: 0,    # 0/1  show count steps
